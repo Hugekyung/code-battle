@@ -30,3 +30,28 @@ def cut_paper(x, y, n, paper_cnt):
 cut_paper(0, 0, n, paper_cnt)
 print(paper_cnt[0])
 print(paper_cnt[1])
+
+# 2회차 풀이
+n = int(input())
+arr = [list(map(int, input().split())) for _ in range(n)]
+result = [0, 0]
+
+def cut_paper(x, y, n):
+    for i in range(x, x + n):
+        for j in range(y, y + n):
+            if arr[x][y] != arr[i][j]:
+                cut_paper(x, y, n//2)
+                cut_paper(x, y + n//2, n//2)
+                cut_paper(x + n//2, y, n//2)
+                cut_paper(x + n//2, y + n//2, n//2)
+                return
+    
+    if arr[x][y] == 0:
+        result[0] += 1
+    else:
+        result[1] += 1
+    return
+
+cut_paper(0, 0, n)
+print(result[0])
+print(result[1])
