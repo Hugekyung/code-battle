@@ -10,3 +10,14 @@ set_arr = list(sorted(set(arr)))
 count_dict = {set_arr[i]: i for i in range(len(set_arr))}
 for key in arr:
     print(count_dict[key], end=" ")
+
+# 좌표 압축 18870번 2회차 풀이
+# 정렬, 해시
+# 해당 위치의 인덱스는 곧 해당 위치의 값 보다 작은 값의 개수와 같다
+
+n = int(input())
+arr = list(map(int, input().split()))
+set_arr = sorted(list(set(arr)))
+idx_dict = { set_arr[i]:i for i in range(len(set_arr))}
+for v in arr:
+    print(idx_dict[v], end=" ")
