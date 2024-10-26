@@ -23,3 +23,27 @@ for _ in range(n):
         print("YES")
     else:
         print('NO')
+
+# 2회차 풀이 2024-10-26
+# 괄호 9012번 2회차 풀이
+# 스택
+n = int(input())
+for _ in range(n):
+    ps = str(input())
+    stack = [] # (만 들어가는 스택
+    flag = True
+    for p in ps:
+        if p == "(":
+            stack.append(p)
+        else:
+            if stack == []:
+                print("NO")
+                flag = False
+                break
+            else:
+                stack.pop()
+    if flag:
+        if len(stack) > 0:
+            print("NO")
+        elif stack == []:
+            print("YES")
