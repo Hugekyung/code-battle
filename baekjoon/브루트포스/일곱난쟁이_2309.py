@@ -35,3 +35,15 @@ for i in range(len(arr)):
                 else:
                     print(k, end="\n")
             is_break = True
+
+
+# 5회차 풀이
+from itertools import permutations
+
+arr = sorted([int(input()) for _ in range(9)])
+cases = permutations(arr, 7)
+for case in cases:
+    if sum(case) == 100:
+        for c in case:
+            print(c, end="\n")
+        break

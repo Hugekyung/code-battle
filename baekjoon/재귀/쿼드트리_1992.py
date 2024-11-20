@@ -75,3 +75,30 @@ def quad_tree(x, y, n):
 
 quad_tree(0, 0, n)
 print(result)
+
+# 3회차 풀이
+n = int(input())
+arr = [str(input()) for _ in range(n)]
+result = ""
+
+def quad_tree(x, y, n):
+    global result
+    for i in range(x, x+n):
+        for j in range(y, y+n):
+            if arr[x][y] != arr[i][j]:
+                result += "("
+                quad_tree(x, y, n//2)
+                quad_tree(x, y+n//2, n//2)
+                quad_tree(x+n//2, y, n//2)
+                quad_tree(x+n//2, y+n//2, n//2)
+                result += ")"
+                return
+
+    if arr[x][y] == "1":
+        result += "1"
+    else:
+        result += "0"
+    return
+
+quad_tree(0, 0, n)
+print(result)
