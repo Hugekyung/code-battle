@@ -37,3 +37,17 @@ def make_one(dp, n):
 n = int(input())
 dp = [0] * (n+1)
 print(make_one(dp, n))
+
+# 1로 만들기 2회차 풀이
+n = int(input())
+dp = [0] * (n+1)
+for i in range(2, n+1):
+    # 1을 뺄 때
+    dp[i] = dp[i-1] + 1 # 1을 뻈을 때의 경우의 수보다 1 많음
+    if i % 2 == 0:
+        # 2로 나누어질 때(1을 뺐을 때와 어떤 것이 횟수가 더 적은지 비교)
+        dp[i] = min(dp[i], dp[i//2]+1)
+    if i % 3 == 0: # 3으로 나눠질 때로 업데이트 해야하므로 if 조건으로 해야함
+        # 3로 나누어질 때(1을 뺐을 때와 어떤 것이 횟수가 더 적은지 비교)
+        dp[i] = min(dp[i], dp[i//3]+1)
+print(dp[n])
