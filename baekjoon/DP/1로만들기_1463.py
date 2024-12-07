@@ -51,3 +51,18 @@ for i in range(2, n+1):
         # 3로 나누어질 때(1을 뺐을 때와 어떤 것이 횟수가 더 적은지 비교)
         dp[i] = min(dp[i], dp[i//3]+1)
 print(dp[n])
+
+# 3회차 풀이
+def make_one(n):
+    dp = [0] * (n+1)
+    for i in range(2, n+1):
+        dp[i] = dp[i-1] + 1 # 1을 빼는 연산과 나눗셈 연산 중 최솟값을 저장해야함
+        if i % 2 == 0:
+            dp[i] = min(dp[i//2] + 1, dp[i])
+        if i % 3 == 0:
+            dp[i] = min(dp[i//3] + 1, dp[i])
+            
+    return dp[n]
+
+n = int(input())
+print(make_one(n))
