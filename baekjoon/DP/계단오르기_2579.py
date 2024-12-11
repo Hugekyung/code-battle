@@ -22,3 +22,26 @@ else:
     dp[1] = s[1]
     dp[2] = dp[1] + s[2]
     print(up_stairs(dp, s, n))
+
+# 계단 오르기 3회차 풀이
+# 도착 지점을 기준으로 생각
+# i) 한칸씩 연속된 2칸을 오른 경우
+# ii) 한칸을 건너뛰는 경우
+
+def up_stairs(dp, n, s):
+    for i in range(3, n+1):
+        dp[i] = max(dp[i-3] + s[i] + s[i-1], dp[i-2] + s[i])
+    return dp[n]
+
+n = int(input())
+stairs = [0] + [int(input()) for _ in range(n)]
+dp = [0] * (n+1)
+if n == 1:
+    print(stairs[n])
+elif n == 2:
+    print(stairs[n] + stairs[n-1])
+else:
+    dp[1] = stairs[1]
+    dp[2] = stairs[2] + stairs[1]
+    print(up_stairs(dp, n, stairs))
+
