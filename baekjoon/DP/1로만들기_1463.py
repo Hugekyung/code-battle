@@ -66,3 +66,15 @@ def make_one(n):
 
 n = int(input())
 print(make_one(n))
+
+# 1로 만들기 5회차 풀이
+n = int(input())
+dp = [0] * (n+1)
+for i in range(2, n+1):
+    dp[i] = dp[i-1] + 1 # 1을 빼는 경우의 수 계산
+    if i % 3 == 0:
+        dp[i] = min(dp[i], dp[i//3] + 1)
+    if i % 2 == 0:
+        dp[i] = min(dp[i], dp[i//2] + 1)
+    
+print(dp[n])
