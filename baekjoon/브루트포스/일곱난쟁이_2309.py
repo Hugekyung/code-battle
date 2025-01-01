@@ -47,3 +47,22 @@ for case in cases:
         for c in case:
             print(c, end="\n")
         break
+
+# 2309 - 일곱 난쟁이 - 6회차 풀이
+# 먼저 선정렬 -> 2중 for문을 돌며 2개를 뺐을 때 합이 100인 두 수의 경우의 수 탐색 -> 찾으면 반환
+arr = [int(input()) for i in range(9)]
+arr.sort()
+s = sum(arr)
+
+def finds():
+    for i in range(9):
+        for j in range(i+1, 9):
+            if s - arr[i] - arr[j] == 100:
+                for num in arr:
+                    if num == arr[i] or num == arr[j]:
+                        continue
+                    else:
+                        print(num, end="\n")
+                return
+
+finds()     
