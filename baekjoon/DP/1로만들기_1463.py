@@ -78,3 +78,18 @@ for i in range(2, n+1):
         dp[i] = min(dp[i], dp[i//2] + 1)
     
 print(dp[n])
+
+# 1로 만들기 6회차 풀이
+# 이전 풀이 데이터를 기억하고 있어야 함(한번 했던 연산은 다시 하지 않는다)
+def make_one(dp, n):
+    for i in range(2, n+1):
+        dp[i] = dp[i-1] + 1 # 1을 뺄 경우의 연산 횟수(dp[i]의 최솟값)
+        if i % 2 == 0:
+            dp[i] = min(dp[i], dp[i//2] + 1)
+        if i % 3 == 0:
+            dp[i] = min(dp[i], dp[i//3] + 1)
+    return dp[n]
+
+n = int(input())
+dp = [0] * (n+1) # 각 숫자의 1로 만드는 연산 횟수 저장하는 dp
+print(make_one(dp, n))
