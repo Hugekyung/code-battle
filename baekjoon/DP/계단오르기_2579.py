@@ -45,3 +45,33 @@ else:
     dp[2] = stairs[2] + stairs[1]
     print(up_stairs(dp, n, stairs))
 
+
+# 계단 오르기 5회차 풀이
+# i 번째 계단에 오를 수 있는 방법
+# 1. i-2 번째 계단에서 오는 경우
+# 2. 직전 계단에서 오는 경우 -> 직전 게단 + 직전계단에 오려면 i-2번째 dp의 위치에서 오게 됨을 생각해!
+
+n = int(input())
+arr = [0] + [int(input()) for _ in range(n)]
+dp = [0] * (n+1)
+max_cnt = 0
+
+def step_up(dp, n):
+    global max_cnt
+    for i in range(3, n+1):
+        dp[i] = max(dp[i-3] + arr[i-1] + arr[i], dp[i-2] + arr[i])
+        print(dp)
+
+    max_cnt = max(max_cnt, dp[n])
+    return
+
+
+if n == 1:
+    print(arr[1])
+elif n == 2:
+    print(arr[1] + arr[2])
+else:
+    dp[1] = arr[1]
+    dp[2] = arr[1] + arr[2]
+    step_up(dp, n)
+    print(max_cnt)
