@@ -159,3 +159,28 @@ result = [0, 0]
 cut_paper(0, 0, n)
 print(result[0])
 print(result[1])
+
+# 색종이 만들기(백트래킹)) 6회차 풀이
+def cut_paper(n, x, y):
+    global result
+    for i in range(x, n+x):
+        for j in range(y, n+y):
+            if arr[x][y] != arr[i][j]:
+                cut_paper(n//2, x, y)
+                cut_paper(n//2, x, y + n//2)
+                cut_paper(n//2, x + n//2, y)
+                cut_paper(n//2, x + n//2, y + n//2)
+                return
+    
+    if arr[i][j]:
+        result[1] += 1
+    else:
+        result[0] += 1
+    return
+
+n = int(input())
+arr = [list(map(int, input().split())) for _ in range(n)]
+result = [0, 0]
+cut_paper(n, 0, 0)
+print(result[0])
+print(result[1])
