@@ -93,3 +93,16 @@ def make_one(dp, n):
 n = int(input())
 dp = [0] * (n+1) # 각 숫자의 1로 만드는 연산 횟수 저장하는 dp
 print(make_one(dp, n))
+
+# 1로 만들기 - 7회차 풀이
+# dp를 사용해서 이전에 계산한 연산 결과를 활용하도록 구현
+# 연산을 하는 횟수의 최솟값
+n = int(input())
+dp = [0] * (n+1)
+for i in range(2, n+1):
+    dp[i] = dp[i-1] + 1 # 1 빼는 연산
+    if i % 3 == 0:
+        dp[i] = min(dp[i], dp[i//3] + 1)
+    if i % 2 == 0:
+        dp[i] = min(dp[i], dp[i//2] + 1)
+print(dp[n])
