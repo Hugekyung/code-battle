@@ -2,16 +2,21 @@
 
 from collections import deque
 
-def dfs(result, arr, v):
-    return
+def dfs(arr, v):
+    visited = []
+    dq = deque([v])
+    while dq:
+        node = dq.pop()
+        if str(node) not in visited:
+            visited.append(str(node))
+            dq.extend(sorted(arr[node], reverse=True))
+    return " ".join(visited)
 
 def bfs(arr, v):
     result = [str(v)]
-    print(arr) # debug
     dq = deque([v])
     while dq:
         idx = dq.popleft()
-        print(idx)
         for j in sorted(arr[idx]):
             if str(j) not in result:
                 result.append(str(j))
@@ -25,5 +30,5 @@ for _ in range(m):
     arr[a].append(b)
     arr[b].append(a)
 
-# print(dfs(result, arr, v))
+print(dfs(arr, v))
 print(bfs(arr, v))
